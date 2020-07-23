@@ -1,9 +1,9 @@
 package com.itomelet.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itomelet.eduservice.entity.EduTeacher;
 import com.itomelet.eduservice.mapper.EduTeacherMapper;
 import com.itomelet.eduservice.service.EduTeacherService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +16,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeacher> implements EduTeacherService {
+
 
 }

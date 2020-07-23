@@ -1,7 +1,7 @@
 package com.itomelet.eduservice.service;
 
-import com.itomelet.eduservice.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.itomelet.eduservice.entity.EduTeacher;
 
 /**
  * <p>
@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-07-23
  */
 public interface EduTeacherService extends IService<EduTeacher> {
+
 
 }

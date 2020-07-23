@@ -1,9 +1,12 @@
 package com.itomelet.eduservice.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.itomelet.eduservice.entity.EduTeacher;
+import com.itomelet.eduservice.service.EduTeacherService;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -14,8 +17,27 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-07-23
  */
 @RestController
-@RequestMapping("/eduservice/edu-teacher")
+@RequestMapping("/eduservice/teacher")
 public class EduTeacherController {
 
+    //把service注入
+    @Resource
+    private EduTeacherService eduTeacherService;
+
+    /**
+     * 查询所有方法
+     *
+     * @return teacher集合
+     */
+    @GetMapping("/findAll")
+    public List<EduTeacher> findAlTeacher() {
+        return eduTeacherService.list(null);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public boolean removeTeacher(@PathVariable String id) {
+        return eduTeacherService.removeById(id);
+    }
 }
 
