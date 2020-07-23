@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/service/service_edu/src/test/
