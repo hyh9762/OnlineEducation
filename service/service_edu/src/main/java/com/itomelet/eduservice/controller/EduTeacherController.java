@@ -59,6 +59,7 @@ public class EduTeacherController {
     /**
      * 分页查询讲师方法
      */
+    @ApiOperation("分页查询讲师方法")
     @GetMapping("/pageTeacher/{current}/{limit}")
     public Result pageListTeacher(@PathVariable long current, @PathVariable long limit) {
 
@@ -72,6 +73,7 @@ public class EduTeacherController {
     /**
      * 条件查询讲师带分页
      */
+    @ApiOperation("条件查询讲师带分页")
     @PostMapping("/pageTeacherCondition/{current}/{limit}")
     public Result pageTeacherCondition(@RequestBody(required = false) TeacherQuery teacherQuery, @PathVariable long current, @PathVariable long limit) {
         //创建page对象
@@ -105,10 +107,28 @@ public class EduTeacherController {
     /**
      * 添加讲师
      */
-    @PostMapping("addTeacher")
+    @ApiOperation("添加讲师")
+    @PostMapping("/addTeacher")
     public Result addTeacher(@RequestBody EduTeacher eduTeacher) {
         return eduTeacherService.save(eduTeacher) ? Result.success() : Result.error();
     }
 
+    /**
+     * 根据讲师id进行查询
+     */
+    @GetMapping("/getTeacher/{id}")
+    public Result getTeacher(@PathVariable String id) {
+        EduTeacher eduTeacher = eduTeacherService.getById(id);
+        return Result.success().data("teacher", eduTeacher);
+    }
+
+    /**
+     * 讲师修改功能
+     */
+    @ApiOperation("讲师信息修改")
+    @PostMapping("updateTeacher")
+    public Result updateTeacher(@RequestBody EduTeacher eduTeacher) {
+        return eduTeacherService.updateById(eduTeacher) ? Result.success() : Result.error();
+    }
 }
 
