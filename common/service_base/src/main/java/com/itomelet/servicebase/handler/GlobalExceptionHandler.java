@@ -1,11 +1,14 @@
 package com.itomelet.servicebase.handler;
 
+import com.atguigu.commonutils.ExceptionUtil;
 import com.atguigu.commonutils.Result;
 import com.itomelet.servicebase.exception.GuliException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -23,6 +26,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result error(GuliException e) {
         e.printStackTrace();
+        log.error(ExceptionUtil.getMessage(e));
         return Result.error().code(e.getCode()).message(e.getMsg());
     }
 
