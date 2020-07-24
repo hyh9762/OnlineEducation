@@ -1,6 +1,7 @@
 package com.itomelet.eduservice.controller;
 
 
+import com.atguigu.commonutils.Result;
 import com.itomelet.eduservice.entity.EduTeacher;
 import com.itomelet.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
@@ -34,15 +35,19 @@ public class EduTeacherController {
      */
     @GetMapping("/findAll")
     @ApiOperation("讲师列表")
-    public List<EduTeacher> findAlTeacher() {
-        return eduTeacherService.list(null);
+    public Result findAlTeacher() {
+        List<EduTeacher> teachers = eduTeacherService.list(null);
+        return Result.success().data("items", teachers);
     }
 
 
     @ApiOperation("根据id删除讲师")
     @DeleteMapping("/{id}")
-    public boolean removeTeacher(@ApiParam("讲师id") @PathVariable String id) {
-        return eduTeacherService.removeById(id);
+    public Result removeTeacher(@ApiParam("讲师id") @PathVariable String id) {
+        boolean flag = eduTeacherService.removeById(id);
+        return flag ? Result.success() : Result.error();
     }
+
+
 }
 
