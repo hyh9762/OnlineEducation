@@ -59,10 +59,9 @@ public class EduTeacherController {
     /**
      * 分页查询讲师方法
      */
-    @ApiOperation("分页查询讲师方法")
+    @ApiOperation("分页列出所有讲师")
     @GetMapping("/pageTeacher/{current}/{limit}")
     public Result pageListTeacher(@PathVariable long current, @PathVariable long limit) {
-
         //创建page对象
         Page<EduTeacher> pageTeacher = new Page<>(current, limit);
         //调用service方法实现分页
