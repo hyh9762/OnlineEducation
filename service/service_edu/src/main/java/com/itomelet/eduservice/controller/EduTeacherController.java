@@ -100,7 +100,6 @@ public class EduTeacherController {
         eduTeacherService.page(pageTeacher, wrapper);
         return Result.success().data("total", pageTeacher.getTotal()).data("rows", pageTeacher.getRecords());
 
-
     }
 
     /**
