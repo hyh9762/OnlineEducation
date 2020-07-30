@@ -1,9 +1,9 @@
 package com.itomelet.eduservice.controller;
 
 
-import com.atguigu.commonutils.Result;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.itomelet.commonutils.Result;
 import com.itomelet.eduservice.entity.EduTeacher;
 import com.itomelet.eduservice.service.EduTeacherService;
 import com.itomelet.eduservice.vo.TeacherQuery;

@@ -1,7 +1,7 @@
 package com.itomelet.servicebase.handler;
 
-import com.atguigu.commonutils.ExceptionUtil;
-import com.atguigu.commonutils.Result;
+import com.itomelet.commonutils.ExceptionUtil;
+import com.itomelet.commonutils.Result;
 import com.itomelet.servicebase.exception.GuliException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.atguigu.commonutils;
+package com.itomelet.commonutils;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;

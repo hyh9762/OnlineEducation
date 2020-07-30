@@ -1,6 +1,6 @@
 package com.itomelet.eduservice.controller;
 
-import com.atguigu.commonutils.Result;
+import com.itomelet.commonutils.Result;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

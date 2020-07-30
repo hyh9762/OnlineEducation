@@ -1,4 +1,4 @@
-package com.atguigu.commonutils;
+package com.itomelet.commonutils;
 
 public interface ResultCode {
     Integer SUCCESS = 20000;
