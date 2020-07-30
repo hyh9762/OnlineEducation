@@ -34,3 +34,4 @@ build/
 /common/service_base/src/test/
 /common/common_utils/src/test/
 /service/service_edu/src/test/
+/service/service_edu/src/main/resources/
