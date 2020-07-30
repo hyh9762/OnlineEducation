@@ -36,3 +36,5 @@ build/
 /service/service_edu/src/test/
 /service/service_edu/src/main/resources/application.properties
 
+/service/service_oss/src/test/
+/service/service_oss/src/main/resources/application.properties
