@@ -1,7 +1,8 @@
 package com.itomelet.eduservice.service;
 
-import com.itomelet.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.itomelet.eduservice.entity.EduCourse;
+import com.itomelet.eduservice.entity.vo.CourseInfoVo;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduCourseService extends IService<EduCourse> {
 
+    void saveCourseInfo(CourseInfoVo courseInfoVo);
 }

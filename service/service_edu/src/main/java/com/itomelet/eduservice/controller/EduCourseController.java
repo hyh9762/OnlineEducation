@@ -1,9 +1,12 @@
 package com.itomelet.eduservice.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.itomelet.commonutils.Result;
+import com.itomelet.eduservice.entity.vo.CourseInfoVo;
+import com.itomelet.eduservice.service.EduCourseService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -18,5 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class EduCourseController {
 
+    @Resource
+    private EduCourseService eduCourseService;
+
+    /**
+     * 添加课程基本信息
+     */
+    @PostMapping("/addCourseInfo")
+    public Result addCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
+        eduCourseService.saveCourseInfo(courseInfoVo);
+        return Result.success();
+    }
 }
 
