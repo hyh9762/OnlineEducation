@@ -1,4 +1,4 @@
-package com.itomelet.eduservice.vo;
+package com.itomelet.eduservice.entity.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

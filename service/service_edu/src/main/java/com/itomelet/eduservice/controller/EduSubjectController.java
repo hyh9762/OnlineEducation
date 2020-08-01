@@ -2,14 +2,13 @@ package com.itomelet.eduservice.controller;
 
 
 import com.itomelet.commonutils.Result;
+import com.itomelet.eduservice.entity.subject.Subject;
 import com.itomelet.eduservice.service.EduSubjectService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -34,6 +33,18 @@ public class EduSubjectController {
     public Result addSubject(MultipartFile file) {
         subjectService.saveSubject(file, subjectService);
         return Result.success();
+    }
+
+
+    /**
+     * 查询课程分类，返回树形结构
+     *
+     * @return 一级课程分类集合，每个分类包含各自的子分类集合
+     */
+    @GetMapping("/getAllSubject")
+    public Result getAllSubject() {
+        List<Subject> subjects = subjectService.getAllSubject();
+        return Result.success().data("subjects", subjects);
     }
 }
 
