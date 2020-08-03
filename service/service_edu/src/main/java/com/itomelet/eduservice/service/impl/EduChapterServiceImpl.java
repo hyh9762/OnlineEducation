@@ -9,6 +9,7 @@ import com.itomelet.eduservice.entity.vo.chapter.VideoVo;
 import com.itomelet.eduservice.mapper.EduChapterMapper;
 import com.itomelet.eduservice.service.EduChapterService;
 import com.itomelet.eduservice.service.EduVideoService;
+import com.itomelet.servicebase.exception.GuliException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,7 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         return list;
     }
 
+
     /**
      * 根据章节id查询小节
      *
@@ -64,5 +66,25 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
             VideoVos.add(videoVo);
         }
         return VideoVos;
+    }
+
+    /**
+     * 删除章节的方法（如果章节下有小节则不能删除）
+     *
+     * @param chapterId 章节id
+     */
+    @Override
+    public boolean deleteChapter(String chapterId) {
+        //根据chapterId查询小节表，如果有数据，不能删除
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(EduVideo::getChapterId, chapterId);
+        int count = eduVideoService.count(wrapper);
+        if (count > 0) {
+            throw new GuliException(20001, "该章节下还有小节，不能删除");
+        } else {
+            int result = baseMapper.deleteById(chapterId);
+            return result > 0;
+        }
+
     }
 }
