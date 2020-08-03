@@ -1,9 +1,12 @@
 package com.itomelet.eduservice.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.itomelet.commonutils.Result;
+import com.itomelet.eduservice.entity.EduVideo;
+import com.itomelet.eduservice.service.EduVideoService;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,5 +20,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/eduservice/edu-video")
 public class EduVideoController {
 
+    @Resource
+    EduVideoService eduVideoService;
+
+    //添加小节
+    @GetMapping("addVideo")
+    public Result addVideo(@RequestBody EduVideo eduVideo) {
+        eduVideoService.save(eduVideo);
+        return Result.success();
+    }
+
+    //根据小节id查询
+    @GetMapping("/getVideoInfo/{videoId}")
+    public Result getVideoInfo(@PathVariable String videoId) {
+        EduVideo eduVideo = eduVideoService.getById(videoId);
+        return Result.success().data("Video", eduVideo);
+    }
+
+    //修改小节
+    @PostMapping("/updateVideo")
+    public Result updateVideo(@RequestBody EduVideo eduVideo) {
+        eduVideoService.updateById(eduVideo);
+        return Result.success();
+    }
+
+    //删除小节
+    @DeleteMapping("/{videoId}")
+    public Result deleteVideo(@PathVariable String videoId) {
+        boolean flag = eduVideoService.removeById(videoId);
+        if (flag) {
+            return Result.success();
+        } else {
+            return Result.error();
+        }
+    }
 }
 

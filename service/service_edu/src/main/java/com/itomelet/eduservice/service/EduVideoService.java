@@ -1,7 +1,7 @@
 package com.itomelet.eduservice.service;
 
-import com.itomelet.eduservice.entity.EduVideo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.itomelet.eduservice.entity.EduVideo;
 
 /**
  * <p>

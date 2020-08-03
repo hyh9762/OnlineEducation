@@ -1,9 +1,9 @@
 package com.itomelet.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itomelet.eduservice.entity.EduVideo;
 import com.itomelet.eduservice.mapper.EduVideoMapper;
 import com.itomelet.eduservice.service.EduVideoService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
