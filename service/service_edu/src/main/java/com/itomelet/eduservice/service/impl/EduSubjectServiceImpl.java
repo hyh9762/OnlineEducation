@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itomelet.eduservice.entity.EduSubject;
 import com.itomelet.eduservice.entity.excel.SubjectData;
-import com.itomelet.eduservice.entity.subject.Subject;
+import com.itomelet.eduservice.entity.vo.SubjectVo;
 import com.itomelet.eduservice.listener.SubjectExcelListener;
 import com.itomelet.eduservice.mapper.EduSubjectMapper;
 import com.itomelet.eduservice.service.EduSubjectService;
@@ -46,7 +46,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
      * 课程分类列表，树形结构
      */
     @Override
-    public List<Subject> getAllSubject() {
+    public List<SubjectVo> getAllSubject() {
         return getChildSubject("0");
     }
 
@@ -56,16 +56,16 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
      * @param id 课程分类id
      * @return 子分类集合
      */
-    private List<Subject> getChildSubject(String id) {
+    private List<SubjectVo> getChildSubject(String id) {
         QueryWrapper<EduSubject> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(EduSubject::getParentId, id);
         List<EduSubject> childEduSubjects = baseMapper.selectList(wrapper);
         if (childEduSubjects == null) {
             return null;
         }
-        List<Subject> subjects = new ArrayList<>();
+        List<SubjectVo> subjects = new ArrayList<>();
         for (EduSubject childEduSubject : childEduSubjects) {
-            Subject childSubject = new Subject();
+            SubjectVo childSubject = new SubjectVo();
             BeanUtils.copyProperties(childEduSubject, childSubject);
             childSubject.setChildren(getChildSubject(childEduSubject.getId()));
             subjects.add(childSubject);

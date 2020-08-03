@@ -2,7 +2,7 @@ package com.itomelet.eduservice.controller;
 
 
 import com.itomelet.commonutils.Result;
-import com.itomelet.eduservice.entity.subject.Subject;
+import com.itomelet.eduservice.entity.vo.SubjectVo;
 import com.itomelet.eduservice.service.EduSubjectService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,7 +43,7 @@ public class EduSubjectController {
      */
     @GetMapping("/getAllSubject")
     public Result getAllSubject() {
-        List<Subject> subjects = subjectService.getAllSubject();
+        List<SubjectVo> subjects = subjectService.getAllSubject();
         return Result.success().data("subjects", subjects);
     }
 }

@@ -24,13 +24,15 @@ public class EduCourseController {
     @Resource
     private EduCourseService eduCourseService;
 
+
     /**
      * 添加课程基本信息
      */
     @PostMapping("/addCourseInfo")
     public Result addCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
-        eduCourseService.saveCourseInfo(courseInfoVo);
-        return Result.success();
+        //返回课程id
+        String id = eduCourseService.saveCourseInfo(courseInfoVo);
+        return Result.success().data("courseId", id);
     }
 }
 

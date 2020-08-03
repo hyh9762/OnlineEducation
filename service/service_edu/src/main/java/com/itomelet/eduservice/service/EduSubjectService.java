@@ -2,7 +2,7 @@ package com.itomelet.eduservice.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.itomelet.eduservice.entity.EduSubject;
-import com.itomelet.eduservice.entity.subject.Subject;
+import com.itomelet.eduservice.entity.vo.SubjectVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -19,5 +19,5 @@ public interface EduSubjectService extends IService<EduSubject> {
 
     void saveSubject(MultipartFile file, EduSubjectService subjectService);
 
-    List<Subject> getAllSubject();
+    List<SubjectVo> getAllSubject();
 }
