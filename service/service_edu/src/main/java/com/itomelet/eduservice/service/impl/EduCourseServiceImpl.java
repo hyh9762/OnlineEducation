@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itomelet.eduservice.entity.EduCourse;
 import com.itomelet.eduservice.entity.EduDescription;
 import com.itomelet.eduservice.entity.vo.CourseInfoVo;
+import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 import com.itomelet.eduservice.mapper.EduCourseMapper;
 import com.itomelet.eduservice.service.EduCourseService;
 import com.itomelet.eduservice.service.EduDescriptionService;
@@ -89,5 +90,11 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (!flag) {
             throw new GuliException(20001, "修改描述信息失败");
         }
+    }
+
+    @Override
+    public PublishCourseVo getPublishCourseInfo(String id) {
+        //调用mapper
+        return baseMapper.getPublishCourseInfo(id);
     }
 }

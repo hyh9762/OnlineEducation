@@ -20,7 +20,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/eduservice/chapter")
+@CrossOrigin
 public class EduChapterController {
+
     @Resource
     private EduChapterService chapterService;
 
@@ -33,11 +35,12 @@ public class EduChapterController {
 
 
     //添加章节
-    @GetMapping("addChapter")
+    @PostMapping("/addChapter")
     public Result addChapter(@RequestBody EduChapter eduChapter) {
         chapterService.save(eduChapter);
         return Result.success();
     }
+
 
     //根据章节id查询
     @GetMapping("/getChapterInfo/{chapterId}")

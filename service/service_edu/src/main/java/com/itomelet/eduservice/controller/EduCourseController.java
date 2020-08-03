@@ -3,6 +3,7 @@ package com.itomelet.eduservice.controller;
 
 import com.itomelet.commonutils.Result;
 import com.itomelet.eduservice.entity.vo.CourseInfoVo;
+import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 import com.itomelet.eduservice.service.EduCourseService;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,13 @@ public class EduCourseController {
     public Result updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
         eduCourseService.updateCourseInfo(courseInfoVo);
         return Result.success();
+    }
+
+    //根据课程id查询课程确认信息
+    @GetMapping("/getPublishCourseInfo/{id}")
+    public Result getPublishCourseInfo(@PathVariable String id) {
+        PublishCourseVo publishCourseVo = eduCourseService.getPublishCourseInfo(id);
+        return Result.success().data("publishCourse", publishCourseVo);
     }
 }
 

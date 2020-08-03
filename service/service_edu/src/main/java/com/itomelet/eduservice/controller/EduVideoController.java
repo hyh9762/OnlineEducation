@@ -18,13 +18,14 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/eduservice/edu-video")
+@CrossOrigin
 public class EduVideoController {
 
     @Resource
     EduVideoService eduVideoService;
 
     //添加小节
-    @GetMapping("addVideo")
+    @PostMapping("addVideo")
     public Result addVideo(@RequestBody EduVideo eduVideo) {
         eduVideoService.save(eduVideo);
         return Result.success();
