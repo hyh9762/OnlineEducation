@@ -75,7 +75,7 @@ public class EduTeacherController {
      */
     @ApiOperation("条件查询讲师带分页")
     @PostMapping("/pageTeacherCondition/{current}/{limit}")
-    public Result pageTeacherCondition(@RequestBody(required = false) TeacherQuery teacherQuery, @PathVariable long current, @PathVariable long limit) {
+    public Result pageTeacherCondition(TeacherQuery teacherQuery, @PathVariable long current, @PathVariable long limit) {
         //创建page对象
         Page<EduTeacher> pageTeacher = new Page<>(current, limit);
         //构建条件

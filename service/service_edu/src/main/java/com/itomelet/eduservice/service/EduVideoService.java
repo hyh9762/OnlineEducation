@@ -13,4 +13,5 @@ import com.itomelet.eduservice.entity.EduVideo;
  */
 public interface EduVideoService extends IService<EduVideo> {
 
+    void removeVideoByCourseId(String courseId);
 }

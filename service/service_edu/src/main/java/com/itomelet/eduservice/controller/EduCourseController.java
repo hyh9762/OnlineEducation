@@ -1,10 +1,15 @@
 package com.itomelet.eduservice.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itomelet.commonutils.Result;
+import com.itomelet.eduservice.entity.EduCourse;
 import com.itomelet.eduservice.entity.vo.CourseInfoVo;
+import com.itomelet.eduservice.entity.vo.CourseQuery;
 import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 import com.itomelet.eduservice.service.EduCourseService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,6 +30,27 @@ public class EduCourseController {
     @Resource
     private EduCourseService eduCourseService;
 
+    //课程列表 条件查询带分页
+    @PostMapping("/pageCourse/{current}/{limit}")
+    public Result pageTeacherCondition(CourseQuery courseQuery, @PathVariable long current, @PathVariable long limit) {
+        //创建page对象
+        Page<EduCourse> pageEduCourse = new Page<>(current, limit);
+        //构建条件
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        String title = courseQuery.getTitle();
+        String status = courseQuery.getStatus();
+        if (!StringUtils.isEmpty(title)) {
+            wrapper.lambda().like(EduCourse::getTitle, title);
+        }
+        if (!StringUtils.isEmpty(status)) {
+            wrapper.lambda().eq(EduCourse::getStatus, status);
+        }
+
+        //调用方法实现条件查询分页
+        eduCourseService.page(pageEduCourse, wrapper);
+        return Result.success().data("total", pageEduCourse.getTotal()).data("rows", pageEduCourse.getRecords());
+
+    }
 
     /**
      * 添加课程基本信息
@@ -56,5 +82,25 @@ public class EduCourseController {
         PublishCourseVo publishCourseVo = eduCourseService.getPublishCourseInfo(id);
         return Result.success().data("publishCourse", publishCourseVo);
     }
+
+    //课程最终发布
+    //修改课程状态
+    @PostMapping("/publishCourse/{id}")
+    public Result publishCourse(@PathVariable String id) {
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(id);
+        eduCourse.setStatus("Normal");//设置课程最终发布状态
+        eduCourseService.updateById(eduCourse);
+        return Result.success();
+    }
+
+    //删除课程
+    @DeleteMapping("/{courseId}")
+    public Result removeCourse(@PathVariable String courseId) {
+        eduCourseService.removeCourse(courseId);
+        return Result.success();
+    }
+
+
 }
 

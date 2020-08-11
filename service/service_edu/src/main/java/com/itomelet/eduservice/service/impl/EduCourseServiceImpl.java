@@ -6,8 +6,10 @@ import com.itomelet.eduservice.entity.EduDescription;
 import com.itomelet.eduservice.entity.vo.CourseInfoVo;
 import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 import com.itomelet.eduservice.mapper.EduCourseMapper;
+import com.itomelet.eduservice.service.EduChapterService;
 import com.itomelet.eduservice.service.EduCourseService;
 import com.itomelet.eduservice.service.EduDescriptionService;
+import com.itomelet.eduservice.service.EduVideoService;
 import com.itomelet.servicebase.exception.GuliException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,11 @@ import javax.annotation.Resource;
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {
 
     @Resource
-    private EduDescriptionService descriptionService;
+    private EduDescriptionService eduDescriptionService;
+    @Resource
+    private EduVideoService eduVideoService;
+    @Resource
+    private EduChapterService eduChapterService;
 
     /**
      * 添加课程信息基本方法
@@ -48,7 +54,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         eduDescription.setDescription(courseInfoVo.getDescription());
         //设置描述id就是课程id
         eduDescription.setId(eduCourse.getId());
-        descriptionService.save(eduDescription);
+        eduDescriptionService.save(eduDescription);
         return eduCourse.getId();
 
     }
@@ -66,7 +72,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         CourseInfoVo courseInfoVo = new CourseInfoVo();
         BeanUtils.copyProperties(eduCourse, courseInfoVo);
         //2.查询描述表
-        EduDescription eduDescription = descriptionService.getById(courseId);
+        EduDescription eduDescription = eduDescriptionService.getById(courseId);
         courseInfoVo.setDescription(eduDescription.getDescription());
 
         return courseInfoVo;
@@ -86,7 +92,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         EduDescription eduDescription = new EduDescription();
         eduDescription.setId(courseInfoVo.getId());
         eduDescription.setDescription(courseInfoVo.getDescription());
-        boolean flag = descriptionService.updateById(eduDescription);
+        boolean flag = eduDescriptionService.updateById(eduDescription);
         if (!flag) {
             throw new GuliException(20001, "修改描述信息失败");
         }
@@ -96,5 +102,21 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public PublishCourseVo getPublishCourseInfo(String id) {
         //调用mapper
         return baseMapper.getPublishCourseInfo(id);
+    }
+
+    @Override
+    @Transactional
+    public void removeCourse(String courseId) {
+        //1.根据课程id删除小节
+        eduVideoService.removeVideoByCourseId(courseId);
+        //2.根据课程id删除章节
+        eduChapterService.removeChapterByCourseId(courseId);
+        //3.删除描述
+        eduDescriptionService.removeById(courseId);
+        //4.删除章节
+        boolean b = this.removeById(courseId);
+        if (!b) {
+            throw new GuliException(20001, "删除失败");
+        }
     }
 }
