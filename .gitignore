@@ -38,3 +38,6 @@ build/
 /service/service_oss/src/test/
 /service/service_oss/src/main/resources/application.properties
 /common/common_utils/src/main/resources/application.properties
+/service/service_vod/src/main/resources/
+/service/service_vod/src/test/
+
