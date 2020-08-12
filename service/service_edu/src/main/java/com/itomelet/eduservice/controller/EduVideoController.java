@@ -2,8 +2,10 @@ package com.itomelet.eduservice.controller;
 
 
 import com.itomelet.commonutils.Result;
+import com.itomelet.eduservice.client.VodClient;
 import com.itomelet.eduservice.entity.EduVideo;
 import com.itomelet.eduservice.service.EduVideoService;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,6 +25,8 @@ public class EduVideoController {
 
     @Resource
     EduVideoService eduVideoService;
+    @Resource
+    VodClient vodClient;
 
     //添加小节
     @PostMapping("addVideo")
@@ -46,10 +50,16 @@ public class EduVideoController {
     }
 
     //删除小节
-    //TODO:删除小节的时候删除里面的课程
-    @DeleteMapping("/{videoId}")
-    public Result deleteVideo(@PathVariable String videoId) {
-        boolean flag = eduVideoService.removeById(videoId);
+    @DeleteMapping("/{id}")
+    public Result deleteVideo(@PathVariable String id) {
+        //删除阿里云上的视频
+        //根据小节id获取视频id
+        String videoSourceId = eduVideoService.getById(id).getVideoSourceId();
+        if (!StringUtils.isEmpty(videoSourceId)) {
+            vodClient.removeAliyunVideo(videoSourceId);
+        }
+        //删除小节
+        boolean flag = eduVideoService.removeById(id);
         if (flag) {
             return Result.success();
         } else {
