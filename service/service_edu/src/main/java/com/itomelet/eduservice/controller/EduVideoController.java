@@ -46,6 +46,7 @@ public class EduVideoController {
     }
 
     //删除小节
+    //TODO:删除小节的时候删除里面的课程
     @DeleteMapping("/{videoId}")
     public Result deleteVideo(@PathVariable String videoId) {
         boolean flag = eduVideoService.removeById(videoId);
@@ -55,5 +56,6 @@ public class EduVideoController {
             return Result.error();
         }
     }
+
 }
 

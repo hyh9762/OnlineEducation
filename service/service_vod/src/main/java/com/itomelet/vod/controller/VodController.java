@@ -2,10 +2,7 @@ package com.itomelet.vod.controller;
 
 import com.itomelet.commonutils.Result;
 import com.itomelet.vod.service.VodService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -23,5 +20,12 @@ public class VodController {
     public Result uploadAliyunVideo(MultipartFile file) {
         String videoId = vodService.uploadVideo(file);
         return Result.success().data("videoId", videoId);
+    }
+
+    //根据视频id删除阿里云视频
+    @DeleteMapping("/removeAliyunVideo/{id}")
+    public Result removeAliyunVideo(@PathVariable String id) {
+        vodService.deleteVideo(id);
+        return Result.success();
     }
 }

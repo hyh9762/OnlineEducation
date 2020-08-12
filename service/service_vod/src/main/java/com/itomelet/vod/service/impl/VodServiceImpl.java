@@ -3,8 +3,13 @@ package com.itomelet.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.itomelet.servicebase.exception.GuliException;
 import com.itomelet.vod.service.VodService;
 import com.itomelet.vod.utils.ConstantPropertiesUtils;
+import com.itomelet.vod.utils.InitVodClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,6 +69,20 @@ public class VodServiceImpl implements VodService {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public void deleteVideo(String id) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantPropertiesUtils.KEY_ID, ConstantPropertiesUtils.KEY_SECRET);
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            //设置视频id
+            request.setVideoIds(id);
+            client.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            throw new GuliException(20001, "删除视频失败");
         }
     }
 }
