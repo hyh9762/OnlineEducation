@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Service
 public class VodServiceImpl implements VodService {
@@ -83,6 +84,13 @@ public class VodServiceImpl implements VodService {
         } catch (ClientException e) {
             e.printStackTrace();
             throw new GuliException(20001, "删除视频失败");
+        }
+    }
+
+    @Override
+    public void removeVideoList(List<String> videoList) {
+        for (String videoId : videoList) {
+            deleteVideo(videoId);
         }
     }
 }

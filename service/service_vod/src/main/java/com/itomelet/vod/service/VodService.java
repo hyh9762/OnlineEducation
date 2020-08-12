@@ -2,8 +2,12 @@ package com.itomelet.vod.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface VodService {
     String uploadVideo(MultipartFile file);
 
     void deleteVideo(String id);
+
+    void removeVideoList(List<String> videoList);
 }

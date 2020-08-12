@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/eduvod/video")
@@ -26,6 +27,13 @@ public class VodController {
     @DeleteMapping("/removeAliyunVideo/{id}")
     public Result removeAliyunVideo(@PathVariable String id) {
         vodService.deleteVideo(id);
+        return Result.success();
+    }
+
+    //删除多个阿里云视频的方法
+    @DeleteMapping("delete-batch")
+    public Result deleteBatch(@RequestParam("videoIdList") List<String> videoList) {
+        vodService.removeVideoList(videoList);
         return Result.success();
     }
 }
