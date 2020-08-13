@@ -5,6 +5,7 @@ import com.itomelet.commonutils.Result;
 import com.itomelet.eduservice.client.VodClient;
 import com.itomelet.eduservice.entity.EduVideo;
 import com.itomelet.eduservice.service.EduVideoService;
+import com.itomelet.servicebase.exception.GuliException;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,7 +57,10 @@ public class EduVideoController {
         //根据小节id获取视频id
         String videoSourceId = eduVideoService.getById(id).getVideoSourceId();
         if (!StringUtils.isEmpty(videoSourceId)) {
-            vodClient.removeAliyunVideo(videoSourceId);
+            Result result = vodClient.removeAliyunVideo(videoSourceId);
+            if (result.getCode() == 20001) {
+                throw new GuliException(20001, "删除视频失败，熔断器...");
+            }
         }
         //删除小节
         boolean flag = eduVideoService.removeById(id);
