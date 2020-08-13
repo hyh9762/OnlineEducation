@@ -41,3 +41,5 @@ build/
 /service/service_vod/src/main/resources/
 /service/service_vod/src/test/
 
+/service/service_cms/src/test/
+/service/service_cms/src/main/resources/
