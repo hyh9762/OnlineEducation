@@ -43,3 +43,5 @@ build/
 
 /service/service_cms/src/test/
 /service/service_cms/src/main/resources/
+/service/service_msm/src/test/
+/service/service_msm/src/main/resources/
