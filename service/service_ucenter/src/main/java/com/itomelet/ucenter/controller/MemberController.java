@@ -42,12 +42,13 @@ public class MemberController {
     }
 
     //根据token获取用户信息
-    @GetMapping("getMemberInfo")
+    @GetMapping("/getMemberInfo")
     public Result getMemberInfo(HttpServletRequest request) {
         //调用jwt工具类的方法。根据request对象获取头信息，返回用户id
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
         //查询数据库根据用户id获取用户信息
         Member member = memberService.getById(memberId);
+        member.setPassword(null);
         return Result.success().data("userInfo", member);
     }
 }
