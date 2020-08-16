@@ -1,7 +1,10 @@
 package com.itomelet.eduservice.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.itomelet.eduservice.entity.EduTeacher;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -14,4 +17,5 @@ import com.itomelet.eduservice.entity.EduTeacher;
 public interface EduTeacherService extends IService<EduTeacher> {
 
 
+    Map<String, Object> getTeacherFrontList(Page<EduTeacher> pageTeacher);
 }
