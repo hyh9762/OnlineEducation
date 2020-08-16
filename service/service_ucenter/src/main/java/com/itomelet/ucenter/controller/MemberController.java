@@ -3,6 +3,7 @@ package com.itomelet.ucenter.controller;
 
 import com.itomelet.commonutils.Result;
 import com.itomelet.ucenter.entity.Member;
+import com.itomelet.ucenter.entity.vo.RegisterVo;
 import com.itomelet.ucenter.service.MemberService;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,10 @@ public class MemberController {
     }
 
     //注册
+    @PostMapping("register")
+    public Result registerUser(@RequestBody RegisterVo registerVo) {
+        memberService.register(registerVo);
+        return Result.success();
+    }
 }
 
