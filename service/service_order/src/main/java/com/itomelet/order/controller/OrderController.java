@@ -30,7 +30,7 @@ public class OrderController {
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
         //创建订单，返回订单号
         String orderNo = orderService.createOrder(courseId, memberId);
-        return Result.success().data("orderId", orderNo);
+        return Result.success().data("orderNo", orderNo);
     }
 }
 
