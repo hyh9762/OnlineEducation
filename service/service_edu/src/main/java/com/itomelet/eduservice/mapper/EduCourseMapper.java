@@ -1,8 +1,8 @@
 package com.itomelet.eduservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.itomelet.commonutils.ordervo.CourseWebVo;
 import com.itomelet.eduservice.entity.EduCourse;
-import com.itomelet.eduservice.entity.frontvo.CourseWebVo;
 import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 
 /**

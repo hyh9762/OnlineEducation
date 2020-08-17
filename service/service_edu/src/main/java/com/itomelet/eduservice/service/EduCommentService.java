@@ -3,7 +3,6 @@ package com.itomelet.eduservice.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.itomelet.eduservice.entity.EduComment;
-import com.itomelet.eduservice.entity.vo.MemberVo;
 
 /**
  * <p>
@@ -17,5 +16,5 @@ public interface EduCommentService extends IService<EduComment> {
 
     Page<EduComment> listAllCommentsByCourseId(String courseId, Page<EduComment> pageEduComment);
 
-    void addComment(EduComment eduComment, MemberVo memberVo);
+    void addComment(EduComment eduComment, String memberId);
 }

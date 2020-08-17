@@ -20,7 +20,7 @@
     </select>
 
     <!--sql语句，根据课程id查询课程基本信息-->
-    <select id="getBaseCourseInfo" resultType="com.itomelet.eduservice.entity.frontvo.CourseWebVo">
+    <select id="getBaseCourseInfo" resultType="com.itomelet.commonutils.ordervo.CourseWebVo">
         select ec.id,
                ec.title,
                ec.price,

@@ -2,9 +2,9 @@ package com.itomelet.eduservice.controller.front;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itomelet.commonutils.Result;
+import com.itomelet.commonutils.ordervo.CourseWebVo;
 import com.itomelet.eduservice.entity.EduCourse;
 import com.itomelet.eduservice.entity.frontvo.CourseFrontVo;
-import com.itomelet.eduservice.entity.frontvo.CourseWebVo;
 import com.itomelet.eduservice.entity.vo.chapter.ChapterVo;
 import com.itomelet.eduservice.service.EduChapterService;
 import com.itomelet.eduservice.service.EduCourseService;
@@ -46,6 +46,8 @@ public class CourseFrontController {
 
         return Result.success().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList);
     }
+
+
 }
 
 

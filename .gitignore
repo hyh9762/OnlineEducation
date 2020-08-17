@@ -48,3 +48,5 @@ build/
 /service/service_ucenter/src/test/
 /service/service_ucenter/src/main/resources/
 
+/service/service_order/src/main/resources/
+/service/service_order/src/test/

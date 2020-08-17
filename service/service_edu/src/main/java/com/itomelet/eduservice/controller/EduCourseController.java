@@ -4,6 +4,7 @@ package com.itomelet.eduservice.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itomelet.commonutils.Result;
+import com.itomelet.commonutils.ordervo.CourseWebVo;
 import com.itomelet.eduservice.entity.EduCourse;
 import com.itomelet.eduservice.entity.vo.CourseInfoVo;
 import com.itomelet.eduservice.entity.vo.CourseQuery;
@@ -101,6 +102,10 @@ public class EduCourseController {
         return Result.success();
     }
 
-
+    //根据课程id查询课程信息(模块间传递)
+    @GetMapping("getCourseInfo/{id}")
+    public CourseWebVo getCourseInfoVo(@PathVariable String id) {
+        return eduCourseService.getBaseCourseInfo(id);
+    }
 }
 

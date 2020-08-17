@@ -1,4 +1,4 @@
-package com.itomelet.eduservice.entity.frontvo;
+package com.itomelet.commonutils.ordervo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

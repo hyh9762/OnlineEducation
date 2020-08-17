@@ -1,14 +1,10 @@
 package com.itomelet.eduservice.controller;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itomelet.commonutils.JwtUtils;
 import com.itomelet.commonutils.Result;
-import com.itomelet.eduservice.client.MemberClient;
 import com.itomelet.eduservice.entity.EduComment;
-import com.itomelet.eduservice.entity.vo.MemberVo;
 import com.itomelet.eduservice.service.EduCommentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +27,6 @@ public class EduCommentController {
     @Resource
     private EduCommentService eduCommentService;
 
-    @Resource
-    private MemberClient memberClient;
 
     //1.分页显示课程所有评论
     @GetMapping("/listAllComments/{current}/{limit}")
@@ -46,9 +40,7 @@ public class EduCommentController {
     @PostMapping("/addComment")
     public Result addComment(@RequestBody EduComment eduComment, HttpServletRequest request) {
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
-        Result result = memberClient.getMemberInfo(memberId);
-        MemberVo memberVo = JSONObject.parseObject((JSON.toJSONString(result.getData().get("userInfo"))), MemberVo.class);
-        eduCommentService.addComment(eduComment, memberVo);
+        eduCommentService.addComment(eduComment, memberId);
         return Result.success();
     }
 }
