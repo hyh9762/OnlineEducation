@@ -51,5 +51,14 @@ public class MemberController {
         member.setPassword(null);
         return Result.success().data("userInfo", member);
     }
+
+    //根据id获取用户信息
+    @GetMapping("/getMemberInfoById/{id}")
+    public Result getMemberInfo(@PathVariable String id) {
+        //查询数据库根据用户id获取用户信息
+        Member member = memberService.getById(id);
+        member.setPassword(null);
+        return Result.success().data("userInfo", member);
+    }
 }
 
