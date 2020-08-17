@@ -2,6 +2,7 @@ package com.itomelet.eduservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.itomelet.eduservice.entity.EduCourse;
+import com.itomelet.eduservice.entity.frontvo.CourseWebVo;
 import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 
 /**
@@ -15,4 +16,7 @@ import com.itomelet.eduservice.entity.vo.PublishCourseVo;
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
 
     PublishCourseVo getPublishCourseInfo(String courseId);
+
+    //根据课程id查询课程基本信息
+    CourseWebVo getBaseCourseInfo(String courseId);
 }

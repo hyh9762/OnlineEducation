@@ -131,7 +131,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     @Override
     public Map<String, Object> getCourseFrontList(Page<EduCourse> pageCourse, CourseFrontVo courseFrontVo) {
         QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
-        if (StringUtils.isEmpty(courseFrontVo.getSubjectParentId())) { //一级分类
+        if (!StringUtils.isEmpty(courseFrontVo.getSubjectParentId())) { //一级分类
             wrapper.lambda().eq(EduCourse::getSubjectParentId, courseFrontVo.getSubjectParentId());
         }
         if (!StringUtils.isEmpty(courseFrontVo.getSubjectId())) { //二级分类
@@ -173,8 +173,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     }
 
+    //根据课程id，编写sql语句查询课程信息
     @Override
     public CourseWebVo getBaseCourseInfo(String courseId) {
-        return null;
+        return baseMapper.getBaseCourseInfo(courseId);
+
     }
 }
