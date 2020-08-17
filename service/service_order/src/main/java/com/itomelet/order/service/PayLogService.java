@@ -1,7 +1,9 @@
 package com.itomelet.order.service;
 
-import com.itomelet.order.entity.PayLog;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.itomelet.order.entity.PayLog;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface PayLogService extends IService<PayLog> {
 
+    Map<String, Object> createNatvie(String orderNo);
+
+    Map<String, String> queryPayStatus(String orderNo);
+
+    void updateOrdersStatus(Map<String, String> map);
 }

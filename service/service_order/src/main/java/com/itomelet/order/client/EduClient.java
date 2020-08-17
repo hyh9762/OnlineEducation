@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 @FeignClient("service-edu")
 public interface EduClient {
-    @GetMapping("/eduservice/course/getCourseInfo/{id}")
+    @GetMapping("/eduservice/course/getCourseOrderInfo/{id}")
     CourseWebVo getCourseInfoVo(@PathVariable("id") String id);
 }

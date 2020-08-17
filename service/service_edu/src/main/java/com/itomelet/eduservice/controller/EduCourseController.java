@@ -64,7 +64,7 @@ public class EduCourseController {
     }
 
     //根据课程查询课程基本信息
-    @GetMapping("/getCourseInfo/{courseId}")
+    @GetMapping("/getCourseBaseInfo/{courseId}")
     public Result getCourseInfo(@PathVariable String courseId) {
         CourseInfoVo courseInfoVo = eduCourseService.getCourseInfo(courseId);
         return Result.success().data("courseInfoVo", courseInfoVo);
@@ -103,7 +103,7 @@ public class EduCourseController {
     }
 
     //根据课程id查询课程信息(模块间传递)
-    @GetMapping("getCourseInfo/{id}")
+    @GetMapping("getCourseOrderInfo/{id}")
     public CourseWebVo getCourseInfoVo(@PathVariable String id) {
         return eduCourseService.getBaseCourseInfo(id);
     }
