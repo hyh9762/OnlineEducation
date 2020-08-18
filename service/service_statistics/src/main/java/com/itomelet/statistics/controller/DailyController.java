@@ -6,6 +6,7 @@ import com.itomelet.statistics.service.DailyService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,6 +29,14 @@ public class DailyController {
     public Result registerCount(@PathVariable String day) {
         dailyService.registerCount(day);
         return Result.success();
+    }
+
+    //图表显示，返回两部分数据，日期json数组，数量json数组
+    @GetMapping("showData/{type}/{begin}/{end}")
+    public Result showData(@PathVariable String type, @PathVariable String begin,
+                           @PathVariable String end) {
+        Map<String, Object> map = dailyService.getShowData(type, begin, end);
+        return Result.success().data(map);
     }
 }
 
