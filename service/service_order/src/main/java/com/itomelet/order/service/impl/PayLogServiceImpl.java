@@ -81,6 +81,7 @@ public class PayLogServiceImpl extends ServiceImpl<PayLogMapper, PayLog> impleme
         }
     }
 
+    //查询支付状态
     @Override
     public Map<String, String> queryPayStatus(String orderNo) {
         try {
