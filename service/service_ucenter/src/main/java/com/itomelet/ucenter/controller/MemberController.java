@@ -63,5 +63,12 @@ public class MemberController {
         BeanUtils.copyProperties(member, ucenterMemberOrder);
         return ucenterMemberOrder;
     }
+
+    //查询某一天的注册人数
+    @GetMapping("/countRegister/{day}")
+    public Result countRegister(@PathVariable String day) {
+        Integer count = memberService.countRegisterDay(day);
+        return Result.success().data("countRegister", count);
+    }
 }
 

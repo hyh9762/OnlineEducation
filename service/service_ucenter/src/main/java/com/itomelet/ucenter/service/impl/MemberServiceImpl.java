@@ -98,4 +98,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         wrapper.lambda().eq(Member::getOpenid, openid);
         return baseMapper.selectOne(wrapper);
     }
+
+    @Override
+    public Integer countRegisterDay(String day) {
+        return baseMapper.countRegisterDay(day);
+    }
 }

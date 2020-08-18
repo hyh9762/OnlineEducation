@@ -50,3 +50,5 @@ build/
 
 /service/service_order/src/main/resources/
 /service/service_order/src/test/
+/service/service_statistics/src/main/resources/
+/service/service_statistics/src/test/

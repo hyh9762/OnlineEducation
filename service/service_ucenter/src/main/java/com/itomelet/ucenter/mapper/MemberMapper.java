@@ -1,7 +1,7 @@
 package com.itomelet.ucenter.mapper;
 
-import com.itomelet.ucenter.entity.Member;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.itomelet.ucenter.entity.Member;
 
 /**
  * <p>
@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface MemberMapper extends BaseMapper<Member> {
 
+    Integer countRegisterDay(String day);
 }
