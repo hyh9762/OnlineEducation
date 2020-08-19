@@ -4,7 +4,6 @@ package com.itomelet.cms.controller;
 import com.itomelet.cms.entity.CrmBanner;
 import com.itomelet.cms.service.CrmBannerService;
 import com.itomelet.commonutils.Result;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +20,6 @@ import java.util.List;
  * @since 2020-08-13
  */
 @RestController
-@CrossOrigin
 @RequestMapping("/cms/bannerFront")
 public class BannerFrontController {
     @Resource

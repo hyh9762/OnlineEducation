@@ -8,6 +8,7 @@
         <module>service/service_order</module>
         <module>service/service_statistics</module>
         <module>canal_clientedu</module>
+        <module>infrastructure</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

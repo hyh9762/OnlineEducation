@@ -6,7 +6,6 @@ import com.itomelet.eduservice.entity.EduCourse;
 import com.itomelet.eduservice.entity.EduTeacher;
 import com.itomelet.eduservice.service.EduCourseService;
 import com.itomelet.eduservice.service.EduTeacherService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/eduservice/indexFront")
-@CrossOrigin
 public class IndexFrontController {
 
     @Resource

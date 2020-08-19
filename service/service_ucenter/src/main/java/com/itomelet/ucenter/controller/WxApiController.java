@@ -8,7 +8,6 @@ import com.itomelet.ucenter.service.MemberService;
 import com.itomelet.ucenter.utils.ConstantWxUtils;
 import com.itomelet.ucenter.utils.HttpClientUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,9 +15,8 @@ import javax.annotation.Resource;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-@CrossOrigin
 @Controller  //只是请求地址，不需要返回数据
-@RequestMapping("/api/ucenter/wx")
+@RequestMapping("/ucenter/wx")
 public class WxApiController {
 
     @Resource

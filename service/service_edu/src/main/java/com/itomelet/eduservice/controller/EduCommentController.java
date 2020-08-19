@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/eduservice/comment")
-@CrossOrigin
 public class EduCommentController {
 
     @Resource

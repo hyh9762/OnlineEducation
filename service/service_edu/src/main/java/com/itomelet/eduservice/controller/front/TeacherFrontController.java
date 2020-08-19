@@ -7,7 +7,10 @@ import com.itomelet.eduservice.entity.EduCourse;
 import com.itomelet.eduservice.entity.EduTeacher;
 import com.itomelet.eduservice.service.EduCourseService;
 import com.itomelet.eduservice.service.EduTeacherService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +18,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/eduservice/teacherfront")
-@CrossOrigin
 public class TeacherFrontController {
 
     @Resource

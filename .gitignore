@@ -53,3 +53,4 @@ build/
 /service/service_statistics/src/main/resources/
 /service/service_statistics/src/test/
 /canal_clientedu/src/main/resources/
+/infrastructure/api_gateway/src/test/

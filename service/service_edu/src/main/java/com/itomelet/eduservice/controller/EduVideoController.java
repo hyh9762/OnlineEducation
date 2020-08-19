@@ -21,7 +21,6 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/eduservice/edu-video")
-@CrossOrigin
 public class EduVideoController {
 
     @Resource

@@ -19,7 +19,6 @@ import javax.annotation.Resource;
  * @since 2020-08-13
  */
 @RestController
-@CrossOrigin
 @RequestMapping("/cms/bannerAdmin")
 public class BannerAdminController {
 
