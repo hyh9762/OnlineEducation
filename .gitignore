@@ -54,3 +54,6 @@ build/
 /service/service_statistics/src/test/
 /canal_clientedu/src/main/resources/
 /infrastructure/api_gateway/src/test/
+/service/service_acl/src/test/
+/service/service_acl/src/main/resources/
+/common/spring_security/src/test/
