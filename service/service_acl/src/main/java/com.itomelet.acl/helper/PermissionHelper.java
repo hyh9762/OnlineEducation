@@ -39,8 +39,7 @@ public class PermissionHelper {
      * @return
      */
     public static Permission findChildren(Permission treeNode, List<Permission> treeNodes) {
-        treeNode.setChildren(new ArrayList<Permission>());
-
+        treeNode.setChildren(new ArrayList<>());
         for (Permission it : treeNodes) {
             if (treeNode.getId().equals(it.getPid())) {
                 int level = treeNode.getLevel() + 1;

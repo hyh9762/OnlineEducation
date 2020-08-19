@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 
 @Controller  //只是请求地址，不需要返回数据
-@RequestMapping("/ucenter/wx")
+@RequestMapping("/ucenter/api/wx")
 public class WxApiController {
 
     @Resource
