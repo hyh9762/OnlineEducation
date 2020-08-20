@@ -43,6 +43,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/admin/acl/login", "POST"));
     }
 
+    //得到用户名和密码
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException {

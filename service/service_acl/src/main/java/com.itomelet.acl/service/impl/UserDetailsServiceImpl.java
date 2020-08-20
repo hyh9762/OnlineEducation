@@ -5,12 +5,12 @@ import com.itomelet.acl.service.PermissionService;
 import com.itomelet.acl.service.UserService;
 import com.itomelet.security.entity.SecurityUser;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -25,10 +25,10 @@ import java.util.List;
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
-    @Autowired
+    @Resource
     private PermissionService permissionService;
 
     /***
@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // 判断用户是否存在
         if (null == user) {
-            //throw new UsernameNotFoundException("用户名不存在！");
+            throw new UsernameNotFoundException("用户名不存在！");
         }
         // 返回UserDetails实现类
         com.itomelet.security.entity.User curUser = new com.itomelet.security.entity.User();

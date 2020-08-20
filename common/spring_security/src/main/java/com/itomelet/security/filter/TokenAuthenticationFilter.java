@@ -39,23 +39,28 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         this.redisTemplate = redisTemplate;
     }
 
+    //授权
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {
         logger.info("=================" + req.getRequestURI());
-        if (req.getRequestURI().indexOf("admin") == -1) {
+        //uri不包含admin，直接放行，不做授权
+        if (!req.getRequestURI().contains("admin")) {
             chain.doFilter(req, res);
             return;
         }
 
+
         UsernamePasswordAuthenticationToken authentication = null;
         try {
+            //从token中得到权限
             authentication = getAuthentication(req);
         } catch (Exception e) {
             ResponseUtil.out(res, Result.error());
         }
 
         if (authentication != null) {
+            //设置权限
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } else {
             ResponseUtil.out(res, Result.error());
